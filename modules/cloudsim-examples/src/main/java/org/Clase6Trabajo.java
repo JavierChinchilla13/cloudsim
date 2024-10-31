@@ -146,16 +146,25 @@ public class Clase6Trabajo {
     }
   }
 
+  // Trabajo en clase
   public static void bindCloudletsToVms(List<Cloudlet> cloudletList, List<Vm> vmList, DatacenterBroker broker) {
+    // Obtiene el número total de máquinas virtuales disponibles para la asignación
+    // de cloudlets
     int numberOfVms = vmList.size();
 
+    // Itera sobre cada cloudlet en la lista para asignarla a una VM específica
     for (int i = 0; i < cloudletList.size(); i++) {
+      // Calcula el índice de la VM a asignar usando el operador módulo para
+      // distribuir de forma cíclica
       int vmIndex = i % numberOfVms;
+      // Obtiene la VM correspondiente de la lista de VMs
       Vm vm = vmList.get(vmIndex);
+      // Obtiene el cloudlet actual de la lista de cloudlets
       Cloudlet cloudlet = cloudletList.get(i);
-
-      // Bind the cloudlet to the VM
+      // Asigna la VM al cloudlet estableciendo el ID de la VM en el cloudlet
       cloudlet.setVmId(vm.getId());
+      // Muestra en consola el ID del cloudlet y la VM a la que fue asignado para
+      // verificar la asignación
       System.out.println("Cloudlet " + cloudlet.getCloudletId() + " bound to VM " + vm.getId());
     }
   }
